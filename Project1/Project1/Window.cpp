@@ -20,6 +20,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 		Window* window = (Window*)((LPCREATESTRUCT)lparam)->lpCreateParams;
 		// .. and then stored for later lookup
 		SetWindowLongPtr(hwnd, GWL_USERDATA, (LONG_PTR)window);
+		window->setHWND(hwnd);
 		window->onCreate();
 		break;
 	}
@@ -46,7 +47,7 @@ bool Window::init()
 {
 
 
-	//Setting up WNDCLASSEX object
+	// Setting up WNDCLASSEX object
 	WNDCLASSEX wc;
 	wc.cbClsExtra = NULL;
 	wc.cbSize = sizeof(WNDCLASSEX);
@@ -61,29 +62,29 @@ bool Window::init()
 	wc.style = NULL;
 	wc.lpfnWndProc = &WndProc;
 
-	if (!::RegisterClassEx(&wc)) // If the registration of class will fail, the function will return false
+	if (!::RegisterClassEx(&wc)) // If the registration of class fails, the function will return false
 		return false;
 
 	/*if (!window)
 		window = this;*/
 
-		//Creation of the window
+		// Create the window
 	m_hwnd = ::CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, "MyWindowClass", "C++ Project",
 		WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 1024, 768,
 		NULL, NULL, NULL, this);
 
-	//if the creation fail return false
+	//if the creation fails, return false
 	if (!m_hwnd)
 		return false;
 
-	//show up the window
+	// Show the window
 	::ShowWindow(m_hwnd, SW_SHOW);
 	::UpdateWindow(m_hwnd);
 
 
 
 
-	//set this flag to true to indicate that the window is initialized and running
+	// set this flag to true to indicate that the window is initialized and running
 	m_is_run = true;
 
 
@@ -111,7 +112,7 @@ bool Window::broadcast()
 
 bool Window::release()
 {
-	//Destroy the window
+	// Destroy the window
 	if (!::DestroyWindow(m_hwnd))
 		return false;
 
@@ -121,6 +122,18 @@ bool Window::release()
 bool Window::isRun()
 {
 	return m_is_run;
+}
+
+RECT Window::getClientWindowRect()
+{
+	RECT rc;
+	::GetClientRect(this->m_hwnd, &rc);
+	return rc;
+}
+
+void Window::setHWND(HWND hwnd)
+{
+	this->m_hwnd = hwnd;
 }
 
 
