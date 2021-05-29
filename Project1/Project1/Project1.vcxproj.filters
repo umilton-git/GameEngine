@@ -19,6 +19,9 @@
     <Filter Include="GameEngine\GraphicsEngine\DeviceContext">
       <UniqueIdentifier>{07d05445-1a6f-4ead-8fd9-50e20b32d93f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\VertexBuffer">
+      <UniqueIdentifier>{32b7ca5d-2331-4fe5-93b2-d83ba3b49c38}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -39,6 +42,9 @@
     <ClCompile Include="DeviceContext.cpp">
       <Filter>GameEngine\GraphicsEngine\DeviceContext</Filter>
     </ClCompile>
+    <ClCompile Include="VertexBuffer.cpp">
+      <Filter>GameEngine\VertexBuffer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h">
@@ -56,5 +62,11 @@
     <ClInclude Include="DeviceContext.h">
       <Filter>GameEngine\GraphicsEngine\DeviceContext</Filter>
     </ClInclude>
+    <ClInclude Include="VertexBuffer.h">
+      <Filter>GameEngine\VertexBuffer</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="shader.fx" />
   </ItemGroup>
 </Project>
