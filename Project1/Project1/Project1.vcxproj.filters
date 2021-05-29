@@ -67,6 +67,8 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="shader.fx" />
+    <FxCompile Include="shader.fx">
+      <Filter>GameEngine\GraphicsEngine</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
